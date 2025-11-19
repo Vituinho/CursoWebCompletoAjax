@@ -12,6 +12,8 @@
 
             function requisitarPagina(url) {
 
+				document.getElementById('conteudo').innerHTML = '';
+
                 //incluir o gif de loading na pagina
                 if(!document.getElementById('loading')) {
                     let imgLoading = document.createElement('img')
@@ -25,7 +27,7 @@
                 let ajax = new XMLHttpRequest();
 
                 //requisição não iniciada, state = 0
-                console.log(ajax.readyState)
+                //console.log(ajax.readyState)
 
                 ajax.open('GET', url);
 
@@ -35,8 +37,15 @@
 
                 //de alguma lógica que fique olhando para o progresso da req
                 ajax.onreadystatechange = function() {
-                    console.log('Requisição finalizada com sucesso!')    
-                    document.getElementById('loading').remove();        
+					if(ajax.readyState == 4 && ajax.status == 200) {
+						document.getElementById('conteudo').innerHTML = 'Requisição finalizada com sucesso, o status é 200';   
+                    	//document.getElementById('loading').remove();    
+					}
+
+					if(ajax.readyState == 4 && ajax.status == 404) {
+						document.getElementById('conteudo').innerHTML = 'Requisição finalizada, porém o recurso solicitado não foi encontrado, o status é 404';
+                    	//document.getElementById('loading').remove();    
+					} 
                 }
 
                 ajax.send();
