@@ -26,6 +26,8 @@
                 
                 let ajax = new XMLHttpRequest();
 
+				console.log(ajax)
+
                 //requisição não iniciada, state = 0
                 //console.log(ajax.readyState)
 
@@ -38,12 +40,12 @@
                 //de alguma lógica que fique olhando para o progresso da req
                 ajax.onreadystatechange = function() {
 					if(ajax.readyState == 4 && ajax.status == 200) {
-						document.getElementById('conteudo').innerHTML = 'Requisição finalizada com sucesso, o status é 200';   
+						document.getElementById('conteudo').innerHTML = ajax.responseText;
                     	//document.getElementById('loading').remove();    
 					}
 
 					if(ajax.readyState == 4 && ajax.status == 404) {
-						document.getElementById('conteudo').innerHTML = 'Requisição finalizada, porém o recurso solicitado não foi encontrado, o status é 404';
+						document.getElementById('conteudo').innerHTML = '... tente novamente mais tarde :s';
                     	//document.getElementById('loading').remove();    
 					} 
                 }
