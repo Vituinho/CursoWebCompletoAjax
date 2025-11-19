@@ -18,6 +18,17 @@
 
                 ajax.open('GET', url);
 
+                //conexão estabelecida com o servidor, state = 1
+                console.log(ajax.readyState)
+                
+
+                //de alguma lógica que fique olhando para o progresso da req
+                ajax.onreadystatechange = function() {
+                    console.log(ajax.readyState)              
+                }
+
+                ajax.send();
+                //console.log(ajax);
             }
             
 
